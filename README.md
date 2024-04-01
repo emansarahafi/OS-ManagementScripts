@@ -12,14 +12,14 @@ Developing scripts that aid an operating system to manage processes, threads and
 
 ## 3. Create three scripts using C:
 - Script A should be the server which:
-    - Print the msg received from scripts B & C
-    - Reply with the msg received from script B or C.
+    - Prints the msg received from scripts B & C
+    - Replies with the msg received from script B or C.
 - Script B should be a client which:
-    - Send the following msg to the server: “This is Client B.”
-    - Print the reply received from Script A.
+    - Sends the following msg to the server: “This is Client B.”
+    - Prints the reply received from Script A.
 - Script C should be a client which:
-    - Send the following msg to the server: “I am Client C.”
-    - Print the reply received from Script A.
+    - Sends the following msg to the server: “I am Client C.”
+    - Prints the reply received from Script A.
 
 ## 4. Create a script using C that:
 - Creates two threads (Thread A, Thread B).
