@@ -1,5 +1,6 @@
 # OS-ManagementScripts
-Developing scripts that aid an operating system to manage processes, threads and Inter-process communications.
+
+This project required developing scripts that aid an operating system to manage processes, threads and Inter-process communications.
 
 ## 1. Create a script using C that:
 - Reads any data from a standard input device.
