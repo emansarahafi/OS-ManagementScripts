@@ -1,17 +1,17 @@
 # OS-ManagementScripts
 
-This project required developing scripts that aid an operating system to manage processes, threads and Inter-process communications.
+This project required developing scripts using C that aid an operating system in managing processes, threads, and Inter-process communications.
 
-## 1. Create a script using C that:
+## 1. First Script:
 - Reads any data from a standard input device.
 - Writes it on the screen.
 - Data should be of any length.
 
-## 2. Create a script using C that:
+## 2. Second Script:
 - Prints the day of the week
 - Forks to print the date.
 
-## 3. Create three scripts using C:
+## 3. Third Script:
 - Script A should be the server which:
     - Prints the msg received from scripts B & C
     - Replies with the msg received from script B or C.
@@ -22,7 +22,7 @@ This project required developing scripts that aid an operating system to manage 
     - Sends the following msg to the server: “I am Client C.”
     - Prints the reply received from Script A.
 
-## 4. Create a script using C that:
+## 4. Fourth Script:
 - Creates two threads (Thread A, Thread B).
 - Threads should alternate using Mutex to print the following:
     - Thread A should print numbers from 1 to 7.
