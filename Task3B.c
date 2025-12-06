@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	{
 		printf("This is Client B\n");
 		char buf[1024];
-		strncpy(buf, "Hello server! This is Client B.", 32);
+		strncpy(buf, "This is Client B", 17);
 		write(sockfd, buf, strlen(buf));
 		int count = read(sockfd, buf, 1024);
 		printf("Got echo of \"%s\" from server\n", buf);

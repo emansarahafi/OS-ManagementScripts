@@ -11,11 +11,10 @@ int main(int argc, char *argv[])
     time(&systemCurrentTime);
     
     //Parent process to print the day of the week
-    if(fork() == 0)
-      printf("Today's Day of the Week is: %.3s\n", ctime(&systemCurrentTime));
+    printf("Today's Day of the Week is: %.3s\n", ctime(&systemCurrentTime));
     
     //Child process to print the full date
-    else
+    if(fork() == 0)
     {
         printf("Today's Date : %.*s ", 6, ctime(&systemCurrentTime) + 4);
         printf("%.*s\n", 4, ctime(&systemCurrentTime) + 20);

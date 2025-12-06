@@ -5,42 +5,43 @@
 #include <stdlib.h>
 
 //Declare variables
-int MAX = 14;
-int thread1val = 0;
-int thread2val = 0;
-int count = 1;
-int thread1count = 1;
-int thread2count = 2;
+int turn = 0; // 0 for Thread A, 1 for Thread B
+int threadA_val = 1;
+int threadB_val = 2;
 pthread_mutex_t thr;
 pthread_cond_t cond;
 
-//Prints all even values from 2 to 14 and should be used alongside the all function
-void *even(void *arg){
- 	while(count < MAX) {
+//Thread B: Prints even numbers from 2 to 14
+void *threadB(void *arg){
+ 	while(threadB_val <= 14) {
  		pthread_mutex_lock(&thr);
- 		while(count % 2 != 0) 
+ 		while(turn != 1) 
  			pthread_cond_wait(&cond, &thr);
-		if (count != MAX)
-			printf("%d -> ", thread2val + thread2count);
-		else
-			printf("%d\n ", thread2val + thread2count);
-		thread2val = thread2val + thread2count;
-		count++;
+		if (threadB_val <= 14) {
+			if (threadB_val == 14)
+				printf("%d\n", threadB_val);
+			else
+				printf("%d -> ", threadB_val);
+			threadB_val += 2;
+		}
+		turn = 0;
 		pthread_mutex_unlock(&thr);
 		pthread_cond_signal(&cond);
 	}
 	pthread_exit(0);
 }
 
-//Prints all values from 1 to 14 and should be used alongside the even function
-void *all(void *arg){
-	while(count < MAX) {
+//Thread A: Prints numbers from 1 to 7
+void *threadA(void *arg){
+	while(threadA_val <= 7) {
 		pthread_mutex_lock(&thr);
-		while(count % 2 != 1)
+		while(turn != 0)
 			pthread_cond_wait(&cond, &thr);
-		printf("%d -> ", thread1val + thread1count);
-		thread1val = thread1val + thread1count;
-		count++;
+		if (threadA_val <= 7) {
+			printf("%d -> ", threadA_val);
+			threadA_val++;
+		}
+		turn = 1;
 		pthread_mutex_unlock(&thr);
 		pthread_cond_signal(&cond);
 	}
@@ -53,8 +54,8 @@ int main(){
 	pthread_t thread2;
 	pthread_mutex_init(&thr, 0);
 	pthread_cond_init(&cond, 0);
-	pthread_create(&thread1, 0, &even, NULL);
-	pthread_create(&thread2, 0, &all, NULL);
+	pthread_create(&thread1, 0, &threadA, NULL);
+	pthread_create(&thread2, 0, &threadB, NULL);
 	pthread_join(thread1, 0);
 	pthread_join(thread2, 0);
 	pthread_mutex_destroy(&thr);
